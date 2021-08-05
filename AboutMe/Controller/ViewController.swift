@@ -8,17 +8,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    let nameLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Han Kim"
-        label.font = UIFont.systemFont(ofSize: 40, weight: .bold)
-        label.textColor = .blue
-        label.backgroundColor = .yellow
-        label.textAlignment = .center
-        return label
-    }()
     
     let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -29,19 +18,15 @@ class ViewController: UIViewController {
         return imageView
     }()
     
-    let favoriteFoodLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Favorite Food"
-        return label
+    let profileImageAndNameView: ProfileImageAndNameView = {
+        let profileImageAndNameView = ProfileImageAndNameView()
+        profileImageAndNameView.translatesAutoresizingMaskIntoConstraints = false
+        return profileImageAndNameView
     }()
     
-    let myFavoriteFoodLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Kimchi Jjigae"
-        return label
-    }()
+//    let headerWithSocialMediaView: HeaderWithSocialMediaView = {
+//        let header
+//    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,41 +37,27 @@ class ViewController: UIViewController {
     
     private func setUpUI() {
         
-        setUpNameLabel()
-        setUpImageView()
+        setUpProfileImageAndNameView()
+//        setUpLocationAndSocialMediaView()
     }
-    
-    private func setUpNameLabel() {
+
+    private func setUpProfileImageAndNameView() {
         
-        view.addSubview(nameLabel)
+        guard let profileImage = UIImage(named: "Han") else {
+            print("Profile image unexpectedly found nil")
+            return
+        }
+        
+        profileImageAndNameView.updateView(withImage: profileImage, fullName: "Han Kim", pronouns: "he/him/his")
+        
+        view.addSubview(profileImageAndNameView)
         
         NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
-            nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            nameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            profileImageAndNameView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            profileImageAndNameView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            profileImageAndNameView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            profileImageAndNameView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/3)
         ])
-    }
-    
-    private func setUpImageView() {
-        
-        view.addSubview(imageView)
-        
-        NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
-            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
-            imageView.heightAnchor.constraint(equalToConstant: 250)
-        ])
-    }
-    
-    private func setUpFavoriteFoodSection() {
-        
-        // favorite foods with no stack view
-    }
-    
-    private func setUpLocationSection() {
-        
-        // show how to use stack view 
     }
 }
 
