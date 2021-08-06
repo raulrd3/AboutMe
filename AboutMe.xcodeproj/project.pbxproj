@@ -78,9 +78,9 @@
 		F3BEC0A926B7642F00DAC02A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F3A7A79226BB4CE000FE0AB6 /* ProfileImageAndNameView.swift */,
-				F3A7A79426BB9CA600FE0AB6 /* LocationWithSocialMediaView.swift */,
 				F3A0EDE126BD03B0003FA5CD /* ImageWithLabelStackView.swift */,
+				F3A7A79426BB9CA600FE0AB6 /* LocationWithSocialMediaView.swift */,
+				F3A7A79226BB4CE000FE0AB6 /* ProfileImageAndNameView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
