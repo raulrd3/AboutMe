@@ -24,9 +24,11 @@ class ViewController: UIViewController {
         return profileImageAndNameView
     }()
     
-//    let headerWithSocialMediaView: HeaderWithSocialMediaView = {
-//        let header
-//    }()
+    let locationWithSocialMediaView: LocationWithSocialMediaView = {
+        let locationWithSocialMediaView = LocationWithSocialMediaView()
+        locationWithSocialMediaView.translatesAutoresizingMaskIntoConstraints = false
+        return locationWithSocialMediaView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +40,7 @@ class ViewController: UIViewController {
     private func setUpUI() {
         
         setUpProfileImageAndNameView()
-//        setUpLocationAndSocialMediaView()
+        setUpLocationWithSocialMediaView()
     }
 
     private func setUpProfileImageAndNameView() {
@@ -54,9 +56,21 @@ class ViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             profileImageAndNameView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            profileImageAndNameView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            profileImageAndNameView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            profileImageAndNameView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            profileImageAndNameView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             profileImageAndNameView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/3)
+        ])
+    }
+    
+    private func setUpLocationWithSocialMediaView() {
+                        
+        view.addSubview(locationWithSocialMediaView)
+        
+        NSLayoutConstraint.activate([
+            locationWithSocialMediaView.topAnchor.constraint(equalTo: profileImageAndNameView.bottomAnchor, constant: 20),
+            locationWithSocialMediaView.leadingAnchor.constraint(equalTo: profileImageAndNameView.leadingAnchor),
+            locationWithSocialMediaView.trailingAnchor.constraint(equalTo: profileImageAndNameView.trailingAnchor),
+            locationWithSocialMediaView.heightAnchor.constraint(equalToConstant: 200)
         ])
     }
 }
