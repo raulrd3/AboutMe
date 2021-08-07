@@ -23,7 +23,7 @@ class ImageWithLabelStackView: UIStackView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        label.textColor = .white
+        label.textColor = .lightGray
         label.text = "@heytherehan"
         return label
     }()
@@ -52,12 +52,12 @@ class ImageWithLabelStackView: UIStackView {
         
         axis = .horizontal
         distribution = .fillProportionally
-        spacing = 20
+        spacing = 8
                 
         addArrangedSubview(imageView)
         
         NSLayoutConstraint.activate([
-            imageView.heightAnchor.constraint(equalToConstant: 50)
+            imageView.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
     
