@@ -14,7 +14,8 @@ class ImageWithLabelStackView: UIStackView {
     let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage.init(systemName: "mappin")
+        imageView.image?.withRenderingMode(.alwaysTemplate)
+        imageView.tintColor = UIColor(named: "NavyColor")        
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -51,13 +52,14 @@ class ImageWithLabelStackView: UIStackView {
     private func setUpImageView() {
         
         axis = .horizontal
-        distribution = .fillProportionally
+        distribution = .fill
         spacing = 8
-                
+        
         addArrangedSubview(imageView)
         
         NSLayoutConstraint.activate([
-            imageView.heightAnchor.constraint(equalToConstant: 30)
+            imageView.heightAnchor.constraint(equalToConstant: 30),
+            imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor)
         ])
     }
     

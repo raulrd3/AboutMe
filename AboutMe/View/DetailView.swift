@@ -20,37 +20,25 @@ class DetailView: UIView {
     let submitButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .blue
+        button.backgroundColor = UIColor(named: "RedColor")
         button.setTitle("Say Hi 👋🏻", for: .normal)
         button.addTarget(self, action: #selector(submitButtonPressed), for: .touchUpInside)
+        button.layer.cornerRadius = 20
         return button
     }()
     
     let socialsView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .yellow
+        view.backgroundColor = UIColor(named: "CreamColor")
         return view
-    }()
-        
-    let pinImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let largeFont = UIFont.systemFont(ofSize: 30)
-        let configuration = UIImage.SymbolConfiguration(font: largeFont)
-        imageView.image = UIImage(systemName: "mappin.circle.fill", withConfiguration: configuration)
-        
-        imageView.tintColor = .red
-        imageView.contentMode = .scaleAspectFit
-        return imageView
     }()
     
     let locationLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        label.text = "Nashville, TN"
+        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        label.text = "📍 Nashville, TN"
         return label
     }()
     
@@ -64,12 +52,21 @@ class DetailView: UIView {
     let twitterStackView: ImageWithLabelStackView = {
         let imageWithLabelStackView = ImageWithLabelStackView()
         imageWithLabelStackView.translatesAutoresizingMaskIntoConstraints = false
+        imageWithLabelStackView.imageView.image = UIImage(named: "twitter")
+        imageWithLabelStackView.imageView.image = imageWithLabelStackView.imageView.image?.withRenderingMode(.alwaysTemplate)
+        imageWithLabelStackView.imageView.tintColor = UIColor(named: "NavyColor")
+        
         return imageWithLabelStackView
     }()
     
     let linkedInStackView: ImageWithLabelStackView = {
         let imageWithLabelStackView = ImageWithLabelStackView()
         imageWithLabelStackView.translatesAutoresizingMaskIntoConstraints = false
+        imageWithLabelStackView.imageView.image = UIImage(named: "linkedIn")
+        
+        imageWithLabelStackView.imageView.image = imageWithLabelStackView.imageView.image?.withRenderingMode(.alwaysTemplate)
+        imageWithLabelStackView.imageView.tintColor = UIColor(named: "NavyColor")
+        
         imageWithLabelStackView.textLabel.text = "linkedin.com/in/han-kim/b247b891"
         return imageWithLabelStackView
     }()
@@ -77,32 +74,38 @@ class DetailView: UIView {
     let interestsView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .yellow
+        view.backgroundColor = UIColor(named: "CreamColor")
         return view
     }()
     
-    let hobbiesStackView: ImageWithLabelStackView = {
-        let imageWithLabelStackView = ImageWithLabelStackView()
-        imageWithLabelStackView.translatesAutoresizingMaskIntoConstraints = false
-        return imageWithLabelStackView
+    let hobbiesLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "❤️ Coffee, plants, hanging out with friends"
+        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        return label
     }()
     
-    let favoriteFoodStackView: ImageWithLabelStackView = {
-        let imageWithLabelStackView = ImageWithLabelStackView()
-        imageWithLabelStackView.translatesAutoresizingMaskIntoConstraints = false
-        return imageWithLabelStackView
+    let favoriteFoodLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "🍴 Kimchi Jjigae"
+        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        return label
     }()
     
-    let favoriteShowOrMovieStackView: ImageWithLabelStackView = {
-        let imageWithLabelStackView = ImageWithLabelStackView()
-        imageWithLabelStackView.translatesAutoresizingMaskIntoConstraints = false
-        return imageWithLabelStackView
+    let favoriteShowOrMovieLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "📺 The Mandalorian"
+        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        return label
     }()
     
     let iOSInterestView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .yellow
+        view.backgroundColor = UIColor(named: "CreamColor")
         return view
     }()
     
@@ -160,7 +163,7 @@ class DetailView: UIView {
         addSubview(profileImageAndNameView)
         
         NSLayoutConstraint.activate([
-            profileImageAndNameView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
+            profileImageAndNameView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
             profileImageAndNameView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
             profileImageAndNameView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
             profileImageAndNameView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1/3)
@@ -186,18 +189,11 @@ class DetailView: UIView {
     
     private func addLocationView() {
         
-        socialsView.addSubview(pinImageView)
-        
-        NSLayoutConstraint.activate([
-            pinImageView.topAnchor.constraint(equalTo: socialsView.topAnchor, constant: 8),
-            pinImageView.leadingAnchor.constraint(equalTo: socialsView.leadingAnchor, constant: 20)
-        ])
-        
         socialsView.addSubview(locationLabel)
         
         NSLayoutConstraint.activate([
-            locationLabel.centerYAnchor.constraint(equalTo: pinImageView.centerYAnchor),
-            locationLabel.leadingAnchor.constraint(equalTo: pinImageView.trailingAnchor, constant: 10)
+            locationLabel.topAnchor.constraint(equalTo: socialsView.topAnchor, constant: 8),
+            locationLabel.leadingAnchor.constraint(equalTo: socialsView.leadingAnchor, constant: 10)
         ])
     }
     
@@ -206,7 +202,7 @@ class DetailView: UIView {
         socialsView.addSubview(divider)
         
         NSLayoutConstraint.activate([
-            divider.topAnchor.constraint(equalTo: pinImageView.bottomAnchor, constant: 8),
+            divider.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 8),
             divider.leadingAnchor.constraint(equalTo: socialsView.leadingAnchor),
             divider.trailingAnchor.constraint(equalTo: socialsView.trailingAnchor),
             divider.heightAnchor.constraint(equalToConstant: 2)
@@ -244,42 +240,44 @@ class DetailView: UIView {
             interestsView.trailingAnchor.constraint(equalTo: socialsView.trailingAnchor)
         ])
         
-        addHobbiesView()
-        addFavoriteFoodView()
-        addFavoriteShowOrMovieView()
+        addHobbiesLabel()
+        addFavoriteFoodLabel()
+        addFavoriteShowOrMovieLabel()
     }
     
-    private func addHobbiesView() {
+    private func addHobbiesLabel() {
         
-        interestsView.addSubview(hobbiesStackView)
+        interestsView.addSubview(hobbiesLabel)
         
         NSLayoutConstraint.activate([
-            hobbiesStackView.topAnchor.constraint(equalTo: interestsView.topAnchor, constant: 8),
-            hobbiesStackView.leadingAnchor.constraint(equalTo: interestsView.leadingAnchor, constant: 20)
+            hobbiesLabel.topAnchor.constraint(equalTo: interestsView.topAnchor, constant: 10),
+            hobbiesLabel.leadingAnchor.constraint(equalTo: interestsView.leadingAnchor, constant: 10),
+            hobbiesLabel.trailingAnchor.constraint(equalTo: interestsView.trailingAnchor, constant: -10)
         ])
     }
     
-    private func addFavoriteFoodView() {
-        
-        interestsView.addSubview(favoriteFoodStackView)
+    private func addFavoriteFoodLabel() {
+    
+        interestsView.addSubview(favoriteFoodLabel)
         
         NSLayoutConstraint.activate([
-            favoriteFoodStackView.topAnchor.constraint(equalTo: hobbiesStackView.bottomAnchor),
-            favoriteFoodStackView.leadingAnchor.constraint(equalTo: hobbiesStackView.leadingAnchor),
-            favoriteFoodStackView.bottomAnchor.constraint(equalTo: interestsView.bottomAnchor,constant: -4),
-            favoriteFoodStackView.widthAnchor.constraint(equalTo: interestsView.widthAnchor, multiplier: 0.50)
+            favoriteFoodLabel.topAnchor.constraint(equalTo: hobbiesLabel.bottomAnchor, constant: 20),
+            favoriteFoodLabel.leadingAnchor.constraint(equalTo: hobbiesLabel.leadingAnchor),
+            favoriteFoodLabel.bottomAnchor.constraint(equalTo: interestsView.bottomAnchor,constant: -10),
         ])
     }
     
-    private func addFavoriteShowOrMovieView() {
+    private func addFavoriteShowOrMovieLabel() {
         
-        interestsView.addSubview(favoriteShowOrMovieStackView)
+        favoriteShowOrMovieLabel.textAlignment = .right
+        
+        interestsView.addSubview(favoriteShowOrMovieLabel)
         
         NSLayoutConstraint.activate([
-            favoriteShowOrMovieStackView.topAnchor.constraint(equalTo: favoriteFoodStackView.topAnchor),
-            favoriteShowOrMovieStackView.leadingAnchor.constraint(equalTo: favoriteFoodStackView.trailingAnchor),
-            favoriteShowOrMovieStackView.bottomAnchor.constraint(equalTo: interestsView.bottomAnchor, constant: -4),
-            favoriteFoodStackView.widthAnchor.constraint(equalTo: interestsView.widthAnchor, multiplier: 0.50),
+            favoriteShowOrMovieLabel.topAnchor.constraint(equalTo: favoriteFoodLabel.topAnchor),
+            favoriteShowOrMovieLabel.leadingAnchor.constraint(equalTo: favoriteFoodLabel.trailingAnchor),
+            favoriteShowOrMovieLabel.bottomAnchor.constraint(equalTo: favoriteFoodLabel.bottomAnchor),
+            favoriteShowOrMovieLabel.trailingAnchor.constraint(equalTo: interestsView.trailingAnchor, constant: -10)
         ])
     }
     
@@ -326,10 +324,10 @@ class DetailView: UIView {
         addSubview(submitButton)
         
         NSLayoutConstraint.activate([
-            submitButton.topAnchor.constraint(greaterThanOrEqualTo: iOSInterestView.bottomAnchor, constant: 5),
+            submitButton.topAnchor.constraint(greaterThanOrEqualTo: iOSInterestView.bottomAnchor, constant: 20),
             submitButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 65),
             submitButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -65),
-            submitButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -30),
+            submitButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 10),
             submitButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
