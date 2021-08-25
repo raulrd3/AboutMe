@@ -23,7 +23,7 @@ This project will get you started learning Programmatic UI and Programmatic Auto
 
 This app is called "About Me". The main goal of the app is to display basic info about yourself. It's common for people to have portfolio websites with information about themselves and projects they're working on. Think of this as the app alternative!
 
-## How To Get Started
+## How to get started
 
 1. Fork this repo to your personal GitHub account
 2. Branch off `main` branch and create your own branch named `YourName-AboutMe`
