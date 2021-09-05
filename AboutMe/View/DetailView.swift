@@ -9,23 +9,24 @@ import UIKit
 
 class DetailView: UIView {
     
-
-    let profileImageAndNameView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false //shortcut 'tamic'
-        view.backgroundColor = .blue
-        view.layer.cornerRadius = 20
-        return view
-    }()
+    // MARK: - View Properties
     
-    let nameLabel: UILabel = {
-       let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "👋 Hey, I'm Raul."
-        label.font = UIFont.systemFont(ofSize: 26, weight: .bold)
-        label.textColor = .white
-        return label
-    }()
+    let profileImageAndNameBackgroundView: ProfileImageAndNameView = {
+            let profileImageAndNameView = ProfileImageAndNameView()
+            profileImageAndNameView.translatesAutoresizingMaskIntoConstraints = false
+            profileImageAndNameView.backgroundColor = .systemGreen
+            profileImageAndNameView.layer.cornerRadius = 20
+            return profileImageAndNameView
+        }()
+    
+//    let nameLabel: UILabel = {
+//       let label = UILabel()
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        label.text = "👋 Hey, I'm Raul."
+//        label.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+//        label.textColor = .white
+//        return label
+//    }()
 
     let submitButton: UIButton = {
         let button = UIButton()
@@ -41,6 +42,7 @@ class DetailView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "📍 + socials"
         label.textColor = .systemPink
+        label.layer.cornerRadius = 20
         return label
     }()
 
@@ -49,6 +51,7 @@ class DetailView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Hobbies go here"
         label.textColor = .green
+        label.layer.cornerRadius = 20
         return label
     }()
 
@@ -57,6 +60,7 @@ class DetailView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Bold Title About Me + paragraph"
         label.textColor = .orange
+        label.layer.cornerRadius = 20
         return label
     }()
     
@@ -71,7 +75,8 @@ class DetailView: UIView {
         return stackView
     }()
 
-
+    // MARK: - Initializer
+    
     init(){
         super.init(frame: .zero)
         setUpUI()
@@ -80,29 +85,32 @@ class DetailView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
+    // MARK: - UI Setup
+    
     private func setUpUI(){
-        profileImageAndNameViewContainer()
+        
+        setUpProfileView()
         setUpSubmitButton()
         setUpLabels()
     }
+        
+    private func setUpProfileView(){
 
-    private func profileImageAndNameViewContainer(){
-
-        addSubview(profileImageAndNameView)
-
+        guard let profileImage = UIImage(named: "raul") else {
+            print("Profile Image is nil")
+            return
+        }
+        
+        profileImageAndNameBackgroundView.updateView(image: profileImage, fullname: "Raul Rodriguez III", pronouns: "He/Him/His")
+        
+        addSubview(profileImageAndNameBackgroundView)
+        
         NSLayoutConstraint.activate([
-            profileImageAndNameView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
-            profileImageAndNameView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            profileImageAndNameView.trailingAnchor.constraint(equalTo:trailingAnchor, constant: -20),
-            profileImageAndNameView.heightAnchor.constraint(equalToConstant: 200)
-        ])
-
-        profileImageAndNameView.addSubview(nameLabel)
-
-        NSLayoutConstraint.activate([
-            nameLabel.centerXAnchor.constraint(equalTo: profileImageAndNameView.centerXAnchor),
-            nameLabel.centerYAnchor.constraint(equalTo: profileImageAndNameView.centerYAnchor)
+            profileImageAndNameBackgroundView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            profileImageAndNameBackgroundView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            profileImageAndNameBackgroundView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            profileImageAndNameBackgroundView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35)
         ])
 
     }
@@ -124,9 +132,9 @@ class DetailView: UIView {
         addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: profileImageAndNameView.bottomAnchor, constant: 40),
-            stackView.leadingAnchor.constraint(equalTo: profileImageAndNameView.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: profileImageAndNameView.trailingAnchor)
+            stackView.topAnchor.constraint(equalTo: profileImageAndNameBackgroundView.bottomAnchor, constant: 40),
+            stackView.leadingAnchor.constraint(equalTo: profileImageAndNameBackgroundView.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: profileImageAndNameBackgroundView.trailingAnchor)
         ])
         
         stackView.addArrangedSubview(locationAndSocials)
@@ -138,28 +146,6 @@ class DetailView: UIView {
         hobbies.backgroundColor = .purple
         aboutMeInfo.backgroundColor = .gray
         
-        
-//        addSubview(labelOne)
-//        addSubview(labelTwo)
-//        addSubview(labelThree)
-//
-//        labelOne.backgroundColor = .yellow
-//        labelTwo.backgroundColor = .yellow
-//        labelThree.backgroundColor = .yellow
-//
-//        NSLayoutConstraint.activate([
-//            labelOne.topAnchor.constraint(equalTo: blueView.bottomAnchor, constant: 40),
-//            labelOne.leadingAnchor.constraint(equalTo: blueView.leadingAnchor),
-//            labelOne.trailingAnchor.constraint(equalTo: blueView.trailingAnchor),
-//
-//            labelTwo.topAnchor.constraint(equalTo: labelOne.bottomAnchor, constant: 20),
-//            labelTwo.leadingAnchor.constraint(equalTo: blueView.leadingAnchor),
-//            labelTwo.trailingAnchor.constraint(equalTo: blueView.trailingAnchor),
-//
-//            labelThree.topAnchor.constraint(equalTo: labelTwo.bottomAnchor, constant: 20),
-//            labelThree.leadingAnchor.constraint(equalTo: blueView.leadingAnchor),
-//            labelThree.trailingAnchor.constraint(equalTo: blueView.trailingAnchor)
-//        ])
     }
     
 }
