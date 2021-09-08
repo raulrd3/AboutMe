@@ -18,15 +18,6 @@ class DetailView: UIView {
             profileImageAndNameView.layer.cornerRadius = 20
             return profileImageAndNameView
         }()
-    
-//    let nameLabel: UILabel = {
-//       let label = UILabel()
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//        label.text = "👋 Hey, I'm Raul."
-//        label.font = UIFont.systemFont(ofSize: 30, weight: .bold)
-//        label.textColor = .white
-//        return label
-//    }()
 
     let submitButton: UIButton = {
         let button = UIButton()
@@ -37,43 +28,50 @@ class DetailView: UIView {
         return button
     }()
 
-    let locationAndSocials: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "📍 + socials"
-        label.textColor = .systemPink
-        label.layer.cornerRadius = 20
-        return label
+    let socialsView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor(named: "Cream")
+        view.layer.cornerRadius = 20
+        return view
     }()
-
-    let hobbies: UILabel = {
+    
+    let locationLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Hobbies go here"
-        label.textColor = .green
-        label.layer.cornerRadius = 20
-        return label
-    }()
-
-    let aboutMeInfo: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Bold Title About Me + paragraph"
-        label.textColor = .orange
-        label.layer.cornerRadius = 20
+        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        label.text = "📍 Houston, Texas"
         return label
     }()
     
-    let stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.alignment = .center
-        stackView.distribution = .fillProportionally
-        stackView.spacing = 10
-        stackView.layer.cornerRadius = 20
-        return stackView
+    let divider : UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .darkGray
+        return view
     }()
+    
+    let twitterStackView : ImageWithLabelStackView = {
+        let imageWithLabelStackView = ImageWithLabelStackView()
+        imageWithLabelStackView.translatesAutoresizingMaskIntoConstraints = false
+        imageWithLabelStackView.imageView.image = UIImage(named: "Twitter")
+        imageWithLabelStackView.textLabel.text = " @raulrdgz"
+        return imageWithLabelStackView
+    }()
+    
+    let linkedInStackView : ImageWithLabelStackView = {
+        let imageWithLabelStackView = ImageWithLabelStackView()
+        imageWithLabelStackView.translatesAutoresizingMaskIntoConstraints = false
+        imageWithLabelStackView.imageView.image = UIImage(named: "LinkedIn")
+        imageWithLabelStackView.textLabel.text = " linkedin.com/in/raulrd3/"
+        return imageWithLabelStackView
+    }()
+
+    //TODO:  Add interestsView UIView
+    //TODO:  Add hobbiesLabel UILabel
+    //TODO:  Add faveFoodLabel UILabel
+    //TODO:  Add faveShowLabel UILabel
+    
 
     // MARK: - Initializer
     
@@ -91,13 +89,15 @@ class DetailView: UIView {
     private func setUpUI(){
         
         setUpProfileView()
+        setUpSocialsView()
+        // TODO: setUpInterestsView()
         setUpSubmitButton()
-        setUpLabels()
+        
     }
         
     private func setUpProfileView(){
 
-        guard let profileImage = UIImage(named: "raul") else {
+        guard let profileImage = UIImage(named: "Raul") else {
             print("Profile Image is nil")
             return
         }
@@ -115,6 +115,68 @@ class DetailView: UIView {
 
     }
 
+    private func setUpSocialsView() {
+        
+        addSubview(socialsView)
+        
+        NSLayoutConstraint.activate([
+            socialsView.topAnchor.constraint(equalTo: profileImageAndNameBackgroundView.bottomAnchor, constant: 20),
+            socialsView.leadingAnchor.constraint(equalTo: profileImageAndNameBackgroundView.leadingAnchor),
+            socialsView.trailingAnchor.constraint(equalTo: profileImageAndNameBackgroundView.trailingAnchor),
+            socialsView.heightAnchor.constraint(equalToConstant: 125)
+        ])
+        
+        addLocationView()
+        addDivider()
+        addTwitterView()
+        addLinkedInView()
+
+        
+    }
+    
+    //TODO: addLocation()
+    private func addLocationView() {
+        
+        socialsView.addSubview(locationLabel)
+        
+        NSLayoutConstraint.activate([
+            locationLabel.topAnchor.constraint(equalTo: socialsView.topAnchor, constant: 8),
+            locationLabel.leadingAnchor.constraint(equalTo: socialsView.leadingAnchor, constant: 10)
+        ])
+    }
+    
+    private func addDivider() {
+        
+        socialsView.addSubview(divider)
+        
+        NSLayoutConstraint.activate([
+            divider.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 8),
+            divider.leadingAnchor.constraint(equalTo: socialsView.leadingAnchor),
+            divider.trailingAnchor.constraint(equalTo: socialsView.trailingAnchor),
+            divider.heightAnchor.constraint(equalToConstant: 5)
+        ])
+    }
+    
+    private func addTwitterView(){
+        addSubview(twitterStackView)
+        
+        NSLayoutConstraint.activate([
+            twitterStackView.topAnchor.constraint(equalTo: divider.bottomAnchor, constant: 8),
+            twitterStackView.leadingAnchor.constraint(equalTo: socialsView.leadingAnchor)
+        ])
+    }
+    
+    private func addLinkedInView(){
+        addSubview(linkedInStackView)
+        
+        NSLayoutConstraint.activate([
+            linkedInStackView.topAnchor.constraint(equalTo: twitterStackView.bottomAnchor, constant: 8),
+            linkedInStackView.leadingAnchor.constraint(equalTo: socialsView.leadingAnchor)
+        ])
+    }
+    
+    // TODO: private func setUpInterestsView(){}
+    
     private func setUpSubmitButton() {
 
         addSubview(submitButton)
@@ -126,26 +188,4 @@ class DetailView: UIView {
             submitButton.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 1/8)
         ])
     }
-
-    private func setUpLabels() {
-        
-        addSubview(stackView)
-        
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: profileImageAndNameBackgroundView.bottomAnchor, constant: 40),
-            stackView.leadingAnchor.constraint(equalTo: profileImageAndNameBackgroundView.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: profileImageAndNameBackgroundView.trailingAnchor)
-        ])
-        
-        stackView.addArrangedSubview(locationAndSocials)
-        stackView.addArrangedSubview(hobbies)
-        stackView.addArrangedSubview(aboutMeInfo)
-        
-        stackView.backgroundColor = .yellow
-        locationAndSocials.backgroundColor = .blue
-        hobbies.backgroundColor = .purple
-        aboutMeInfo.backgroundColor = .gray
-        
-    }
-    
 }
