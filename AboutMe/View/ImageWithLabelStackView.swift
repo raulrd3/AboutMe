@@ -46,6 +46,8 @@ class ImageWithLabelStackView: UIStackView {
     private func setUpImageView() {
         
         axis = .horizontal
+        distribution = .fill
+        spacing = 5
         
         addArrangedSubview(imageView)
         
