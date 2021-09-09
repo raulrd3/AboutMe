@@ -15,7 +15,7 @@ class AboutMeController: UIViewController {
         
         view = DetailView()
     
-        view.backgroundColor = .white
+        view.backgroundColor = .black
     }
     
     // MARK: - Actions

@@ -31,7 +31,7 @@ class DetailView: UIView {
     let socialsView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(named: "Orange")
+        view.backgroundColor = UIColor(named: "Cream")
         view.layer.cornerRadius = 20
         return view
     }()
@@ -79,7 +79,6 @@ class DetailView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "🤎 Tea, Yoga, Gaming, & B-Cinema"
-        label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         return label
     }()
     
@@ -87,18 +86,47 @@ class DetailView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "🍴 Tofu Curry"
-        label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         return label
     }()
     
     let faveShowLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "📺 Dr. Who"
-        label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        label.text = "📺 Star Trek TNG"
         return label
     }()
-
+    
+    // TODO:  iOSBioView
+    let iosBioView : UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor(named: "Cream")
+        view.layer.cornerRadius = 20
+        return view
+    }()
+    
+    // TODO: iosBioTitleLabel
+    let iosBioTitleLabel : UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "I like iOS development because..."
+        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        return label
+    }()
+    
+    // TODO:  iosBioBodyLabel
+    let iosBioBodyLabel : UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 7
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        label.text = """
+        I first discovered Dart/Flutter and really enjoyed mobile development.  Then I gave an iOS tutorial a shot and the rest is history.  So far, I've found the community quite welcoming!
+        """
+        return label
+    }()
+    
     // MARK: - Initializer
     
     init(){
@@ -117,6 +145,7 @@ class DetailView: UIView {
         setUpProfileView()
         setUpSocialsView()
         setUpInterestsView()
+        setUpIosBioView()
         setUpSubmitButton()
         
     }
@@ -249,15 +278,54 @@ class DetailView: UIView {
         ])
     }
     
+    private func setUpIosBioView() {
+        addSubview(iosBioView)
+        
+        NSLayoutConstraint.activate([
+            iosBioView.topAnchor.constraint(equalTo: interestsView.bottomAnchor, constant: 20),
+            iosBioView.leadingAnchor.constraint(equalTo: interestsView.leadingAnchor),
+            iosBioView.trailingAnchor.constraint(equalTo: interestsView.trailingAnchor),
+            iosBioView.heightAnchor.constraint(equalToConstant: 125)
+        ])
+        
+        addIosBioTitle()
+        addIosBioBody()
+    }
+    
+    private func addIosBioTitle(){
+        
+        addSubview(iosBioTitleLabel)
+        
+        NSLayoutConstraint.activate([
+            iosBioTitleLabel.topAnchor.constraint(equalTo: iosBioView.topAnchor, constant: 8),
+            iosBioTitleLabel.leadingAnchor.constraint(equalTo: iosBioView.leadingAnchor, constant: 8)
+        ])
+    }
+    
+    private func addIosBioBody() {
+        
+        addSubview(iosBioBodyLabel)
+        
+        NSLayoutConstraint.activate([
+            iosBioBodyLabel.topAnchor.constraint(equalTo: iosBioTitleLabel.bottomAnchor),
+            iosBioBodyLabel.leadingAnchor.constraint(equalTo: iosBioTitleLabel.leadingAnchor),
+            iosBioBodyLabel.trailingAnchor.constraint(equalTo: iosBioView.trailingAnchor, constant: 4),
+            iosBioBodyLabel.bottomAnchor.constraint(equalTo: iosBioView.bottomAnchor, constant: -4)
+            
+        ])
+        
+    }
+    
     private func setUpSubmitButton() {
 
         addSubview(submitButton)
 
         NSLayoutConstraint.activate([
-            submitButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            submitButton.topAnchor.constraint(greaterThanOrEqualTo: iosBioView.bottomAnchor, constant: 20),
+            submitButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 65),
+            submitButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -65),
             submitButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10),
-            submitButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            submitButton.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 1/8)
+            submitButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
 }
