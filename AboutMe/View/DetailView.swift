@@ -18,16 +18,7 @@ class DetailView: UIView {
             profileImageAndNameView.layer.cornerRadius = 20
             return profileImageAndNameView
         }()
-
-    let submitButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Submit", for: .normal)
-        button.backgroundColor = .blue
-        button.layer.cornerRadius = 20
-        return button
-    }()
-
+    
     let socialsView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -78,14 +69,14 @@ class DetailView: UIView {
     let hobbiesLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "🤎 Tea, Yoga, Gaming, & B-Cinema"
+        label.text = "🤎 Tea, Yoga, & World Languages"
         return label
     }()
     
     let faveFoodLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "🍴 Tofu Curry"
+        label.text = "🍴 Spicy Tofu Curry"
         return label
     }()
     
@@ -96,7 +87,6 @@ class DetailView: UIView {
         return label
     }()
     
-    // TODO:  iOSBioView
     let iosBioView : UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -105,7 +95,6 @@ class DetailView: UIView {
         return view
     }()
     
-    // TODO: iosBioTitleLabel
     let iosBioTitleLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -114,25 +103,39 @@ class DetailView: UIView {
         return label
     }()
     
-    // TODO:  iosBioBodyLabel
     let iosBioBodyLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 7
-        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         label.text = """
-        I first discovered Dart/Flutter and really enjoyed mobile development.  Then I gave an iOS tutorial a shot and the rest is history.  So far, I've found the community quite welcoming!
+        I first discovered mobile development through Dart/Flutter.  Then I gave an iOS tutorial a shot and really enjoyed it!  Plus, I've found the iOS community to be quite welcoming!
         """
         return label
     }()
     
+    var buttonAction: (() -> Void)?
+    
+    let submitButton: CustomButton = {
+        let button = CustomButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.updateButtonTitle(buttonTitle: "👋 ¡Hola!")
+        button.roundCorners(radius: 20)
+        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        return button
+    }()
+    
     // MARK: - Initializer
     
-    init(){
+    init(buttonAction: @escaping () -> Void){
+        self.buttonAction = buttonAction
+        
         super.init(frame: .zero)
+        
         setUpUI()
     }
+    
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -309,7 +312,7 @@ class DetailView: UIView {
         NSLayoutConstraint.activate([
             iosBioBodyLabel.topAnchor.constraint(equalTo: iosBioTitleLabel.bottomAnchor),
             iosBioBodyLabel.leadingAnchor.constraint(equalTo: iosBioTitleLabel.leadingAnchor),
-            iosBioBodyLabel.trailingAnchor.constraint(equalTo: iosBioView.trailingAnchor, constant: 4),
+            iosBioBodyLabel.trailingAnchor.constraint(equalTo: iosBioView.trailingAnchor, constant: -4),
             iosBioBodyLabel.bottomAnchor.constraint(equalTo: iosBioView.bottomAnchor, constant: -4)
             
         ])
@@ -327,5 +330,10 @@ class DetailView: UIView {
             submitButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10),
             submitButton.heightAnchor.constraint(equalToConstant: 50)
         ])
+    }
+    
+    @objc func buttonTapped() {
+        print("button tapped");
+        buttonAction?()
     }
 }

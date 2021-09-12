@@ -8,6 +8,7 @@
 //import Foundation
 
 import UIKit
+import Foundation
 
 class ProfileImageAndNameView: UIView {
     
