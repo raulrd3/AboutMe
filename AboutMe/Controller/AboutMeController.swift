@@ -25,7 +25,7 @@ class AboutMeController: UIViewController {
     private func displayAlert() {
         
         let alertController = UIAlertController(title: nil, message: "¡Hola Amigx!", preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Adios", style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "Adiós", style: .cancel, handler: nil))
         present(alertController, animated: true, completion: nil)
     }
 }

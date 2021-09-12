@@ -160,7 +160,7 @@ class DetailView: UIView {
             return
         }
         
-        profileImageAndNameBackgroundView.updateView(image: profileImage, fullname: "Raul Rodriguez III", pronouns: "He/Him/His")
+        profileImageAndNameBackgroundView.updateView(image: profileImage, fullname: "Raúl Rodríguez III", pronouns: "He/Him/His")
         
         addSubview(profileImageAndNameBackgroundView)
         
