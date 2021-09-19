@@ -21,4 +21,4 @@ This project initially started with Hanko Academy, and helped me learn Programma
 
 ## What I built
 
-This app is called "About Me". The main goal of the app is to display basic info about yourself.
+This app is called "About Me". The main goal of the app is to display basic info about myself.
