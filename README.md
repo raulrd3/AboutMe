@@ -5,27 +5,20 @@
 
 ## Description
 
-This project will get you started learning Programmatic UI and Programmatic Auto Layout. Much of iOS development is building the UI and making it interactive for users, so that is what we'll be focusing on with this app. Through this app, you'll get more comfortable with building UI, working in Xcode, and using version control.
+This project initially started with Hanko Academy, and helped me learn Programmatic UI and Programmatic Auto Layout. 
 
-## What you'll learn
+## I learned how to
 
-* How to use Git with GitHub 
-* Setting up your project to use MVC
-* Removing Storyboard and replacing it with Programmatic UI
-* Adding UIKit views and controls programmatically
-* Adding constraints using Auto Layout
+* Use Git with GitHub 
+* Set up a project to use MVC
+* Remove Storyboard and replace it with Programmatic UI
+* Add UIKit views and controls programmatically
+* Add constraints using Auto Layout
 * Learn different types of views and controls provided by Apple's UIKit framework
-* Rounding Views with Apple's CALayer class
-* Xcode shortcuts
-* Documenting your code 
+* Round Views with Apple's CALayer class
+* Use Xcode shortcuts
+* Document my code 
 
-## What you'll be building
+## What I built
 
-This app is called "About Me". The main goal of the app is to display basic info about yourself. It's common for people to have portfolio websites with information about themselves and projects they're working on. Think of this as the app alternative!
-
-## How to get started
-
-1. Fork this repo to your personal GitHub account
-2. Branch off `main` branch and create your own branch named `YourName-AboutMe`
-3. Build the app, commit your changes, and push those changes to your new branch
-4. Create a pull request to merge your `YourName-AboutMe` branch back into this repository 
+This app is called "About Me". The main goal of the app is to display basic info about yourself.
