@@ -16,7 +16,6 @@ class AboutMeController: UIViewController {
         view = DetailView(buttonAction: { [weak self] in
             self?.displayAlert()
         })
-    
         view.backgroundColor = .black
     }
     

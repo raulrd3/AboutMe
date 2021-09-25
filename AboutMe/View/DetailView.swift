@@ -10,7 +10,7 @@ import UIKit
 class DetailView: UIView {
     
     // MARK: - View Properties
-    
+
     let profileImageAndNameBackgroundView: ProfileImageAndNameView = {
             let profileImageAndNameView = ProfileImageAndNameView()
             profileImageAndNameView.translatesAutoresizingMaskIntoConstraints = false
